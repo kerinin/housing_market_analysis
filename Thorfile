@@ -1,1 +1,3 @@
-$: << File.expand_path("../lib/tasks", __FILE__)
+$: << File.expand_path("../tasks", __FILE__)
+
+require File.expand_path('../config/environment', __FILE__)

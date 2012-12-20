@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3', engine: 'jruby', engine_version: '1.7.1'
 
 gem 'rails', '3.2.9'
 
@@ -38,8 +39,11 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "wombat"
-gem "pg"
 gem "activerecord-postgis-adapter"
 gem "sidekiq"
 gem "thor"
-gem "pry"
+gem "pry-rails"
+gem "redis"
+
+gem 'slim'
+gem 'sinatra', :require => nil

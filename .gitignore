@@ -1,0 +1,4 @@
+postgres
+pg_logs
+data
+.DS_Store

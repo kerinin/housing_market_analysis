@@ -76,6 +76,7 @@ GEM
     net-http-persistent (2.8)
     nokogiri (1.5.6)
     ntlm-http (0.1.1)
+    pg (0.14.0)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -159,6 +160,7 @@ DEPENDENCIES
   activerecord-postgis-adapter
   coffee-rails (~> 3.2.1)
   jquery-rails
+  pg
   pry
   rails (= 3.2.9)
   sass-rails (~> 3.2.3)

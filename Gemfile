@@ -38,6 +38,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "wombat"
+gem "pg"
 gem "activerecord-postgis-adapter"
 gem "sidekiq"
 gem "thor"

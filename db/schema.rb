@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220152405) do
+ActiveRecord::Schema.define(:version => 20121220213045) do
 
   create_table "historical_values", :force => true do |t|
     t.integer  "year"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20121220152405) do
   end
 
   create_table "lands", :force => true do |t|
+    t.string   "land_id"
     t.string   "type_code"
     t.float    "size_acres"
     t.float    "size_sqft"
@@ -30,26 +31,40 @@ ActiveRecord::Schema.define(:version => 20121220152405) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "owners", :force => true do |t|
+    t.string   "name"
+    t.string   "mailing_address"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "properties", :force => true do |t|
-    t.decimal "objectid",                                                    :precision => 10, :scale => 0
-    t.decimal "area"
-    t.string  "plat",       :limit => 6
-    t.string  "pid_10",     :limit => 10
-    t.decimal "prop_id",                                                     :precision => 10, :scale => 0
-    t.string  "lots",       :limit => 10
-    t.string  "situs",      :limit => 50
-    t.string  "blocks",     :limit => 4
-    t.string  "condoid",    :limit => 15
-    t.string  "condoid2",   :limit => 20
-    t.string  "parcel_blo", :limit => 50
-    t.string  "nbhd",       :limit => 50
-    t.string  "zoning",     :limit => 50
-    t.decimal "land_value"
-    t.string  "grid",       :limit => 50
-    t.string  "wcid17",     :limit => 10
-    t.decimal "shape_area"
-    t.decimal "shape_len"
-    t.spatial "geom",       :limit => {:srid=>4326, :type=>"multi_polygon"}
+    t.decimal  "objectid",                                                           :precision => 10, :scale => 0
+    t.decimal  "area"
+    t.string   "plat",              :limit => 6
+    t.string   "pid_10",            :limit => 10
+    t.decimal  "prop_id",                                                            :precision => 10, :scale => 0
+    t.string   "lots",              :limit => 10
+    t.string   "situs",             :limit => 50
+    t.string   "blocks",            :limit => 4
+    t.string   "condoid",           :limit => 15
+    t.string   "condoid2",          :limit => 20
+    t.string   "parcel_blo",        :limit => 50
+    t.string   "nbhd",              :limit => 50
+    t.string   "zoning",            :limit => 50
+    t.string   "grid",              :limit => 50
+    t.string   "wcid17",            :limit => 10
+    t.decimal  "shape_area"
+    t.decimal  "shape_len"
+    t.spatial  "geom",              :limit => {:srid=>4326, :type=>"multi_polygon"}
+    t.string   "address"
+    t.string   "legal_name"
+    t.float    "land_value"
+    t.float    "improvement_value"
+    t.float    "assessed_value"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "properties", ["geom"], :name => "properties_geom_gist", :spatial => true

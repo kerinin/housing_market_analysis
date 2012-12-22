@@ -6,10 +6,18 @@ class ScrapeTcadWorker
 
     property.fetch_from_tcad
     property.compute_fields
+
+    property.scrape_successful
     property.save!
 
     puts "scraped #{prop_id}: #{property.address}"
+
   rescue Property::ParseError
-    property.update_attribute :scrape_failed_at, DateTime.now
+    property.reload.scrape_failed
+    property.save!
+  rescue
+    property.reload.scrape_failed
+    property.save!
+    raise
   end
 end

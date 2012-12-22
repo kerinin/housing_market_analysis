@@ -120,9 +120,7 @@ class Property < ActiveRecord::Base
   end
 
   def compute_assessed_value_per_lot_sf
-    if residential?
-      self.assessed_value_per_lot_sf        = assessed_value / lot_area if lot_area > 0
-    end
+    self.assessed_value_per_lot_sf        = assessed_value / lot_area if lot_area > 0
   end
 
   def compute_improvement_value_per_hvac_sf
@@ -132,8 +130,6 @@ class Property < ActiveRecord::Base
   end
 
   def compute_land_value_per_lot_sf
-    if residential?
       self.land_value_per_lot_sf           = land_value / lot_area if lot_area > 0
-    end
   end
 end

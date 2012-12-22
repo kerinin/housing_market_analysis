@@ -1,5 +1,6 @@
-PATH
-  remote: ../activerecord-postgis-adapter
+GIT
+  remote: git@github.com:kerinin/activerecord-postgis-adapter.git
+  revision: 5fbfd81308d117f0680b23d34b2a8c6e9024fbd8
   specs:
     activerecord-postgis-adapter (0.5.0.nonrelease)
       rgeo-activerecord (~> 0.4.6)

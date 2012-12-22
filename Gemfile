@@ -40,7 +40,7 @@ gem 'jquery-rails'
 
 gem "wombat"
 gem "activerecord-jdbcpostgresql-adapter"
-gem "activerecord-postgis-adapter", :path => "../activerecord-postgis-adapter"
+gem "activerecord-postgis-adapter", :git => "git@github.com:kerinin/activerecord-postgis-adapter.git"
 gem "sidekiq"
 gem "thor"
 gem "pry-rails"

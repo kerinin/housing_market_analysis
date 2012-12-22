@@ -1,4 +1,4 @@
-class QueueScraper < Thor
+class Scrape < Thor
   desc "within_radius_of RADIUS PROP_ID", "Queue scraping of parcels within RADIUS feet of parcel PROP_ID"
   def within_radius_of(radius, prop_id)
     raise ArgumentError unless property = Property.find_by_prop_id(prop_id)

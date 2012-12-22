@@ -17,8 +17,10 @@ If you're starting from a new db:
 ``` sh
 bundle
 rbenv rehash
-thor gis_data:load_shp $TCAD_SHAPEFILE
+thor gis_data:load_shp $TCAD_SHAPEFILE objects
+thor gis_data:load_shp $ZONING_SHAPEFILE zone_objects
 rake db:migrate
+thor zoning:associate_properties
 ```
 
 If you're going to use Taps to transfer an existing DB (Assuming you're pusing data to Leo from another box):

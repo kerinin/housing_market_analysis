@@ -10,6 +10,7 @@ class Property < ActiveRecord::Base
   has_many :historical_values
 
   attr_accessible :address, :legal_name, :land_value, :improvement_value, :assessed_value, :scraped_at
+  attr_accessible :zoning_name, :zoning_full_name, :zoning_short_name
 
   before_save :compute_fields
 
@@ -38,6 +39,11 @@ class Property < ActiveRecord::Base
 
   def self.residential
     where{ has_residential == true }
+  end
+
+  def zone_object
+    my_geom = geom # Because squeel changes the meaning of 'self'
+    ZoneObject.where{st_within(st_centroid(my_geom), geom)}.first
   end
 
   def log_scrape_successful

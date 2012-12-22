@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222200848) do
+ActiveRecord::Schema.define(:version => 20121222221600) do
 
   create_table "historical_values", :force => true do |t|
     t.datetime "date"
@@ -84,12 +84,16 @@ ActiveRecord::Schema.define(:version => 20121222200848) do
     t.float    "land_value_per_lot_sf"
     t.float    "weighted_structure_age"
     t.string   "state",                                                                                                            :default => "not_scraped"
+    t.string   "zoning_name"
+    t.string   "zoning_full_name"
+    t.string   "zoning_short_name"
   end
 
   add_index "properties", ["geom"], :name => "properties_geom_gist", :spatial => true
   add_index "properties", ["prop_id"], :name => "index_properties_on_prop_id"
   add_index "properties", ["scrape_failed_at"], :name => "index_properties_on_scrape_failed_at"
   add_index "properties", ["scraped_at"], :name => "index_properties_on_scraped_at"
+  add_index "properties", ["zoning_short_name"], :name => "index_properties_on_zoning_short_name"
 
   create_table "structures", :force => true do |t|
     t.string   "segment_id"
@@ -103,5 +107,21 @@ ActiveRecord::Schema.define(:version => 20121222200848) do
   end
 
   add_index "structures", ["property_id", "segment_id"], :name => "index_structures_on_property_id_and_segment_id", :unique => true
+
+  create_table "zone_objects", :force => true do |t|
+    t.integer  "zoning_id"
+    t.date     "created_da"
+    t.string   "created_by", :limit => 20
+    t.date     "modified_d"
+    t.string   "modified_b", :limit => 20
+    t.string   "zoning_zty", :limit => 30
+    t.decimal  "shape_area"
+    t.decimal  "shape_len"
+    t.spatial  "geom",       :limit => {:srid=>2277, :type=>"multi_polygon"}
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "zone_objects", ["geom"], :name => "zone_objects_geom_gist", :spatial => true
 
 end

@@ -32,7 +32,7 @@ class Property < ActiveRecord::Base
     has_residential == true
   end
 
-  def fetch_from_tcad!
+  def fetch_from_tcad
     property_data = PropertyParser.new(prop_id).crawl
 
     raise ParseError unless property_data["owner"].has_key?("name")
@@ -63,10 +63,8 @@ class Property < ActiveRecord::Base
     end
 
     self.owner = owner
-    update_attributes property_data["property"].merge(:scraped_at => DateTime.now)
+    assign_attributes property_data["property"].merge(:scraped_at => DateTime.now)
   end
-
-  private
 
   def compute_fields
     compute_lot_area

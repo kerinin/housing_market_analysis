@@ -4,7 +4,9 @@ class ScrapeTcadWorker
   def perform(prop_id)
     property = Property.find_by_prop_id!(prop_id)
 
-    property.fetch_from_tcad!
+    property.fetch_from_tcad
+    property.compute_fields
+    property.save!
 
     puts "scraped #{prop_id}: #{property.address}"
   rescue Property::ParseError

@@ -1,7 +1,7 @@
 class CreateHistoricalValue < ActiveRecord::Migration
   def up
     create_table :historical_values do |t|
-      t.integer :year
+      t.datetime :date
       t.integer :assessed_value
 
       t.belongs_to :property

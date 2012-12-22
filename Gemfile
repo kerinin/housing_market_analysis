@@ -40,11 +40,12 @@ gem 'jquery-rails'
 
 gem "wombat"
 gem "activerecord-jdbcpostgresql-adapter"
-gem "activerecord-postgis-adapter"
+gem "activerecord-postgis-adapter", :path => "../activerecord-postgis-adapter"
 gem "sidekiq"
 gem "thor"
 gem "pry-rails"
 gem "redis"
+gem "squeel"
 
 gem 'slim'
 gem 'sinatra', :require => nil

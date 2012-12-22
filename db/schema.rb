@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222221600) do
+ActiveRecord::Schema.define(:version => 20121222223221) do
 
   create_table "historical_values", :force => true do |t|
     t.datetime "date"
@@ -85,15 +85,14 @@ ActiveRecord::Schema.define(:version => 20121222221600) do
     t.float    "weighted_structure_age"
     t.string   "state",                                                                                                            :default => "not_scraped"
     t.string   "zoning_name"
-    t.string   "zoning_full_name"
-    t.string   "zoning_short_name"
+    t.string   "zoning_use"
   end
 
   add_index "properties", ["geom"], :name => "properties_geom_gist", :spatial => true
   add_index "properties", ["prop_id"], :name => "index_properties_on_prop_id"
   add_index "properties", ["scrape_failed_at"], :name => "index_properties_on_scrape_failed_at"
   add_index "properties", ["scraped_at"], :name => "index_properties_on_scraped_at"
-  add_index "properties", ["zoning_short_name"], :name => "index_properties_on_zoning_short_name"
+  add_index "properties", ["zoning_use"], :name => "index_properties_on_zoning_use"
 
   create_table "structures", :force => true do |t|
     t.string   "segment_id"

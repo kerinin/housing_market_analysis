@@ -10,7 +10,7 @@ class Property < ActiveRecord::Base
   has_many :historical_values
 
   attr_accessible :address, :legal_name, :land_value, :improvement_value, :assessed_value, :scraped_at
-  attr_accessible :zoning_name, :zoning_full_name, :zoning_short_name
+  attr_accessible :zoning_use, :zoning_name
 
   before_save :compute_fields
 

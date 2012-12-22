@@ -46,6 +46,7 @@ gem "thor"
 gem "pry-rails"
 gem "redis"
 gem "squeel"
+gem "aasm"
 
 gem 'slim'
 gem 'sinatra', :require => nil

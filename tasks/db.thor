@@ -1,13 +1,13 @@
 class GisData < Thor
-  desc "push USERNAME PASSWORD", "Push data to leo (not usable outside my home network, FYI)"
-  def push(username, password)
-    `cd ../`
-    `taps push postgres://localhost/housing_market http://#{username}:#{password}@leo.local:5000'`
+  desc "dump", "Dump the current database to file"
+  def dump
+    `pg_dump -a -Fc housing_market > housing_market.dump`
   end
 
-  desc "pull USERNAME PASSWORD", "Pull data from leo (not usable outside my home network, FYI"
-  def pull(username, password)
-    `cd ../`
-    `taps pull postgres://localhost/housing_market http://#{username}:#{password}@leo.local:5000'`
+  desc "restore", "Restore the database from file"
+  def restore
+    `rake db:drop`
+    `rake db:schema:load`
+    `pg_restore -a -v -Fc -d housing_market housing_market.dump`
   end
 end

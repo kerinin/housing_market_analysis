@@ -19,3 +19,4 @@ pg_logs
 data
 .DS_Store
 *.qgs
+*.dump

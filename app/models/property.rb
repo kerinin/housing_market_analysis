@@ -1,4 +1,6 @@
 class Property < ActiveRecord::Base
+  include AASM
+
   class ParseError < StandardError; end
 
   belongs_to :owner
@@ -11,6 +13,20 @@ class Property < ActiveRecord::Base
 
   before_save :compute_fields
 
+  aasm :column => :state do
+    state :not_scraped
+    state :scraped
+    state :scrape_failed
+
+    event :scrape_successful do
+      transitions :to => :scraped, :after => :log_scrape_successful
+    end
+
+    event :scrape_failed do
+      transitions :to => :scrape_failed, :after => :log_scrape_failed
+    end
+  end
+
   def self.within_radius_of(radius, reference_geom)
     # NOTE: radius is in feet, assuming SRID 2277
     where{st_distance(reference_geom, geom) < radius}
@@ -20,12 +36,16 @@ class Property < ActiveRecord::Base
     order{st_distance(reference_geom, geom)}
   end
 
-  def self.scraped(since=30.days.ago)
-    where{ scraped_at > since }
-  end
-
   def self.residential
     where{ has_residential == true }
+  end
+
+  def log_scrape_successful
+    self.scraped_at = DateTime.now
+  end
+
+  def log_scrape_failed
+    self.scrape_failed_at = DateTime.now
   end
 
   def residential?
@@ -63,7 +83,7 @@ class Property < ActiveRecord::Base
     end
 
     self.owner = owner
-    assign_attributes property_data["property"].merge(:scraped_at => DateTime.now)
+    assign_attributes property_data["property"]
   end
 
   def compute_fields

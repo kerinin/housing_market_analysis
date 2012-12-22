@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222000400) do
+ActiveRecord::Schema.define(:version => 20121222200848) do
 
   create_table "historical_values", :force => true do |t|
     t.datetime "date"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20121222000400) do
     t.float    "improvement_value_per_hvac_sf"
     t.float    "land_value_per_lot_sf"
     t.float    "weighted_structure_age"
+    t.string   "state",                                                                                                            :default => "not_scraped"
   end
 
   add_index "properties", ["geom"], :name => "properties_geom_gist", :spatial => true

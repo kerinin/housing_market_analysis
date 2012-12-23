@@ -2,7 +2,7 @@ class Property < ActiveRecord::Base
   include AASM
 
   class ParseError < StandardError; end
-  class NotUniqueProprIDError < StandardError; end
+  class NotUniquePropIdError < StandardError; end
 
   belongs_to :owner
 
@@ -60,7 +60,7 @@ class Property < ActiveRecord::Base
   end
 
   def fetch_from_tcad
-    raise NotUniqueProprIDError unless Property.where(:prop_id => prop_id).count == 1
+    raise NotUniquePropIdError unless Property.where(:prop_id => prop_id).count == 1
 
     property_data = PropertyParser.new(prop_id).crawl
 

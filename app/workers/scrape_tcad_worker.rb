@@ -12,7 +12,8 @@ class ScrapeTcadWorker
 
     puts "scraped #{prop_id}: #{property.address}"
 
-  rescue Property::ParseError
+  rescue Property::ParseError, Property::NotUniquePropIdError
+    # Don't retry the task
     property.reload.scrape_failed
     property.save!
   rescue

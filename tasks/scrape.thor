@@ -3,7 +3,6 @@ class Scrape < Thor
   def within_radius_of(radius, prop_id)
     raise ArgumentError unless property = Property.find_by_prop_id(prop_id)
 
-    ScrapeTcadWorker.perform_async(prop_id)
     scope = Property.select([:id, :prop_id]).not_scraped.
       within_radius_of(radius.to_i, property.geom)
 

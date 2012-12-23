@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222223221) do
+ActiveRecord::Schema.define(:version => 20121223013453) do
 
   create_table "historical_values", :force => true do |t|
     t.datetime "date"
@@ -119,8 +119,10 @@ ActiveRecord::Schema.define(:version => 20121222223221) do
     t.spatial  "geom",       :limit => {:srid=>2277, :type=>"multi_polygon"}
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "zoning_use"
   end
 
   add_index "zone_objects", ["geom"], :name => "zone_objects_geom_gist", :spatial => true
+  add_index "zone_objects", ["zoning_use"], :name => "index_zone_objects_on_zoning_use"
 
 end

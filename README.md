@@ -42,4 +42,8 @@ pg_restore -a -v -Fc -d housing_market housing_market.dump
 Start the sidekiq workers with `sidekiq -c 10` (10 concurrent threads - if you want more you'll probably need
 to increase `pool` in `config/database.yml`
 
+## Tile Server Install
 
+``` sh
+easy_install TileStache ModestMaps Werkzeug PIL
+```

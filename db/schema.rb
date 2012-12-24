@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20121223013453) do
     t.string   "wcid17",                           :limit => 10
     t.decimal  "shape_area"
     t.decimal  "shape_len"
-    t.spatial  "geom",                             :limit => {:srid=>2277, :type=>"multi_polygon"}
     t.string   "address"
     t.string   "legal_name"
     t.float    "land_value"
@@ -83,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20121223013453) do
     t.float    "improvement_value_per_hvac_sf"
     t.float    "land_value_per_lot_sf"
     t.float    "weighted_structure_age"
+    t.spatial  "geom",                             :limit => {:srid=>2277, :type=>"multi_polygon"}
     t.string   "state",                                                                                                            :default => "not_scraped"
     t.string   "zoning_name"
     t.string   "zoning_use"
@@ -116,13 +116,13 @@ ActiveRecord::Schema.define(:version => 20121223013453) do
     t.string   "zoning_zty", :limit => 30
     t.decimal  "shape_area"
     t.decimal  "shape_len"
-    t.spatial  "geom",       :limit => {:srid=>2277, :type=>"multi_polygon"}
+    t.spatial  "geom",       :limit => {:no_constraints=>true}
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "zoning_use"
   end
 
-  add_index "zone_objects", ["geom"], :name => "zone_objects_geom_gist", :spatial => true
+  add_index "zone_objects", ["geom"], :name => "zone_objects_the_geom_gist", :spatial => true
   add_index "zone_objects", ["zoning_use"], :name => "index_zone_objects_on_zoning_use"
 
 end

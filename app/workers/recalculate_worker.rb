@@ -4,7 +4,7 @@ class RecalculateWorker
   def perform(id, to_calculate)
     property = Property.find(id)
 
-    property.send("calculate_#{to_calculate}")
+    property.send("compute_#{to_calculate}")
     property.save!
 
     puts "recalculated #{property.prop_id}: #{property.address}"

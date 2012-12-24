@@ -18,18 +18,20 @@ class Zoning < Thor
     end
   end
 
-  def zoning_use(zoning_name)
-    case zoning_name.match(/^(?:I-)?([\/\w]+)/)[1].downcase.to_sym
-    when :la, :rr, :sf, :mf, :mh
-      :residential
-    when :no, :lo, :go, :cr, :lr, :gr, :l, :cbd, :dmu, :"w/lo", :cs, :ch
-      :commercial
-    when :ip, :mi, :li, :"r&d"
-      :industrial
-    when :dr, :av, :ag, :pud, :p, :tn, :tod, :nbg
-      :special_purpose
-    else
-      :unknown
+  no_tasks do
+    def zoning_use(zoning_name)
+      case zoning_name.match(/^(?:I-)?([\/\w]+)/)[1].downcase.to_sym
+      when :la, :rr, :sf, :mf, :mh
+        :residential
+      when :no, :lo, :go, :cr, :lr, :gr, :l, :cbd, :dmu, :"w/lo", :cs, :ch
+        :commercial
+      when :ip, :mi, :li, :"r&d"
+        :industrial
+      when :dr, :av, :ag, :pud, :p, :tn, :tod, :nbg
+        :special_purpose
+      else
+        :unknown
+      end
     end
   end
 end

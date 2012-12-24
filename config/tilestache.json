@@ -1,34 +1,33 @@
 {
   "cache": {"name": "Test"},
   "layers": {
-    "scraped": {
-      "provider": {
-        "name": "Sandwich",
-        "stack": [
-          {"color": "#fff"},
-          {"src": "base", "opacity": 0.1},
-          {"src": "scraped_properties"}
-        ]
-      },
 
-      "preview": {
-        "lat": 30.1199,
-        "lon": -97.7327,
-        "zoom": 13,
-        "ext": "png"
-      }
-    },
+    "scraped": { "provider": { "name": "Sandwich",
+      "stack": [
+        {"color": "#fff"},
+        {"src": "base", "opacity": 0.1},
+        {"src": "scraped_properties"}
+      ] }, "preview": { "lat": 30.1199, "lon": -97.7327, "zoom": 13, "ext": "png" } },
 
-    "base": {
-      "provider": {
-        "name": "mapnik", 
+
+    "zoning": { "provider": { "name": "Sandwich",
+      "stack": [
+        {"color": "#fff"},
+        {"src": "base", "opacity": 0.1},
+        {"src": "zoning_use"}
+      ] }, "preview": { "lat": 30.1199, "lon": -97.7327, "zoom": 13, "ext": "png" } },
+
+    "base": { "provider": { "name": "mapnik", 
         "mapfile": "../public/assets/mapnik/all_properties_base.xml"
       }
     }, 
 
-    "scraped_properties": {
-      "provider": {
-        "name": "mapnik", 
+    "zoning_use": { "provider": { "name": "mapnik", 
+        "mapfile": "../public/assets/mapnik/zoning.xml"
+      }
+    }, 
+
+    "scraped_properties": { "provider": { "name": "mapnik", 
         "mapfile": "../public/assets/mapnik/scraped_properties.xml"
       }
     } 

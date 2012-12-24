@@ -4,7 +4,7 @@ Map srs="+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0
   / xi:include href="styles/background_polygon.xml"/
   Style name="background_polygon"
     Rule
-      PolygonSymbolizer fill="black"
+      PolygonSymbolizer fill="red"
       / LineSymbolizer stroke="black" stroke-width="4"
       / TextSymbolizer[face-name="DejaVu Sans Book" size="14" fill="black"] [zoning_use]
 
@@ -13,11 +13,11 @@ Map srs="+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0
 
     Datasource 
       Parameter name="type"                 postgis
-      Parameter name="host"                 localhost
+      Parameter name="host"                 leo.local
       Parameter name="dbname"               housing_market
       Parameter name="user"                 housing_market
       Parameter name="password"             housing_market
-      Parameter name="table"                properties
+      Parameter name="table"                (SELECT * FROM properties WHERE state = 'scraped') AS properties
       Parameter name="geometry_field"       geom
       Parameter name="estimate_extent"      true
       Parameter name="connect_timeout"      120

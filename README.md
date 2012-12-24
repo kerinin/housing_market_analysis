@@ -45,5 +45,6 @@ to increase `pool` in `config/database.yml`
 ## Tile Server Install
 
 ``` sh
-easy_install TileStache ModestMaps Werkzeug PIL
+pip install TileStache ModestMaps Werkzeug PIL Blit sympy
+tilestache-server.py -c config/tilestache.json &
 ```

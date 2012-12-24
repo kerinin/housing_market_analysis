@@ -1,12 +1,12 @@
 class RecalculateWorker
   include Sidekiq::Worker
 
-  def perform(id, property)
+  def perform(id, to_calculate)
     property = Property.find(id)
 
-    property.send("calculate_#{property}")
+    property.send("calculate_#{to_calculate}")
     property.save!
 
-    puts "recalculated #{prop_id}: #{property.address}"
+    puts "recalculated #{property.prop_id}: #{property.address}"
   end
 end

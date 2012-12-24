@@ -1,0 +1,18 @@
+{
+  "cache": {"name": "Test"},
+  "layers": {
+    "example": {
+      "provider": {
+        "name": "mapnik", 
+        "mapfile": "../public/assets/mapnik/all_properties_base.xml"
+      },
+      "preview": {
+        "lat": 30.1199,
+        "lon": -97.7327,
+        "zoom": 13,
+        "ext": "png"
+      }
+    } 
+  }
+}
+

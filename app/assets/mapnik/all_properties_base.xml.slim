@@ -1,0 +1,25 @@
+doctype xml
+Map background-color="#eee" srs="+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+ 
+  / xi:include href="styles/background_polygon.xml"/
+  Style name="background_polygon"
+    Rule
+      PolygonSymbolizer fill="black" fill-opacity="0.1"
+      / LineSymbolizer stroke="black" stroke-width="4"
+      / TextSymbolizer[face-name="DejaVu Sans Book" size="14" fill="black"] [zoning_use]
+
+  Layer name="TCAD Parcels" srs="+proj=lcc +lat_1=31.88333333333333 +lat_2=30.11666666666667 +lat_0=29.66666666666667 +lon_0=-100.3333333333333 +x_0=699999.9998983998 +y_0=3000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"
+    / xi:include href="data_sources/housing_market_pgis.xml"/
+
+    Datasource 
+      Parameter name="type"                 postgis
+      Parameter name="host"                 localhost
+      Parameter name="dbname"               housing_market
+      Parameter name="user"                 housing_market
+      Parameter name="password"             housing_market
+      Parameter name="table"                properties
+      Parameter name="geometry_field"       geom
+      Parameter name="estimate_extent"      true
+      Parameter name="connect_timeout"      120
+  
+    StyleName background_polygon

@@ -47,6 +47,16 @@ gem "pry-rails"
 gem "redis"
 gem "squeel"
 gem "aasm"
+gem "haml"
+gem "slim-rails"
+gem "sinatra", :require => nil
 
-gem 'slim'
-gem 'sinatra', :require => nil
+group :development do
+  gem "guard"
+  gem "guard-slim"
+  gem "guard-shell"
+
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+end

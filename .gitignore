@@ -20,3 +20,4 @@ data
 .DS_Store
 *.qgs
 *.dump
+public/assets/*

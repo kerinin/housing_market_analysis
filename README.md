@@ -44,7 +44,11 @@ to increase `pool` in `config/database.yml`
 
 ## Tile Server Install
 
+You'll need to install osm2pgsql, on OSX just `brew install --HEAD osm2pgsql`
+
 ``` sh
 pip install TileStache ModestMaps Werkzeug PIL Blit sympy
 tilestache-server.py -c config/tilestache.json &
+wget http://overpass.osm.rambler.ru/cgi/xapi?map?bbox=-97.94474697260601,30.078532770620534,-97.5208695238209,30.511870070750014 -O travis_county.osm
+osm2pgsql -h localhost -d housing_market -U housing_market --prefix "osm" travis_county.osm
 ```
